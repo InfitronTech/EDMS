@@ -5,14 +5,14 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
-import AddPage from "./components/AddPage";
+import AddPage from "./pages/AddPage";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
   },
   {
-    path: "/add-page",
+    path: "/cabinet",
     element: <AddPage />,
   },
 ]);

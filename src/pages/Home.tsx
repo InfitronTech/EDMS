@@ -31,8 +31,6 @@ interface TagData {
   label: string;
 }
 const Home = () => {
-  const [apiData, setapiData] = React.useState({});
-  const [id, setId] = React.useState();
   const [loading, setLoading] = React.useState<boolean>(false);
   const [toastData, setToastData] = React.useState("");
   const [headerData, setHeaderData] = React.useState<HeaderData>(
@@ -40,7 +38,7 @@ const Home = () => {
   );
   const [tagData, setTagData] = React.useState<any>();
   const [documentTypeData, SetDocumentTypeData] = React.useState();
-  const [showToast, seShowToast] = React.useState(false);
+  const [showToast, setShowToast] = React.useState(false);
   const [error, setError] = React.useState("");
   const [uploadedFiles, setUploadedFiles] = React.useState<any>([]);
   const getAuthHeaders = () => {
@@ -65,7 +63,6 @@ const Home = () => {
     const auth = "Basic " + btoa(username + ":" + password);
 
     const headers = new Headers();
-    headers.append("content-type", "multipart/form-data");
     headers.append("Authorization", auth);
     headers.append(
       "Cookie",
@@ -82,7 +79,7 @@ const Home = () => {
   );
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
-
+  console.log(headerData.metaData);
   // api calls
   const base_url = "http://192.168.100.36";
   const headers = getAuthHeaders();
@@ -132,104 +129,111 @@ const Home = () => {
     fetchTags();
     setLoading(false);
   }, []);
-  const [selectedFile, setSelectedFile] = React.useState<any>({});
-  console.log(selectedFile);
+  // const [selectedFile, setSelectedFile] = React.useState<any>({});
+  // console.log(selectedFile);
 
-  // Function to handle file selection
-  const handleFileChange = (e: any) => {
-    setSelectedFile(e.target.files[0]);
-  };
+  // // Function to handle file selection
+  // const handleFileChange = (e: any) => {
+  //   setSelectedFile(e.target.files[0]);
+  // };
 
   //
   // handle Form change
-  console.log(uploadedFiles);
+
   const handleSubmit = async () => {
     // first api call is for
 
     // first api call
     // documentType:headerData.documentType
     // label: uploadedFiles[i].name
-    setLoading(true);
-    fetch(`${base_url}/api/v4/documents/`, {
-      method: "POST",
-      headers: getAuthHeaders(),
-      body: JSON.stringify({
-        document_type_id: headerData.documentType,
-        label: selectedFile.name,
-      }),
-    })
-      .then(async (res) => {
-        const response = await res.json();
-        const id = response.id;
-        console.log(1);
-        fetch(`${base_url}/api/v4/documents/${id}/metadata/`, {
-          headers: getAuthHeaders(),
-          method: "POST",
-          body: JSON.stringify({
-            metadata_type_id: 5,
-            value: headerData.metaData,
-          }),
-        })
-          .then(async (res) => {
-            let response = await res.json();
-            console.log(2);
-
-            console.log(id);
-            fetch(`${base_url}/api/v4/documents/${id}/tags/attach/`, {
-              method: "POST",
-              headers: getAuthHeaders(),
-              body: JSON.stringify({ tag: headerData.tag }),
-            })
-              .then(async (res) => {
-                if (res.status === 200) {
-                  console.log("Hello");
-                }
-
-                fetch(
-                  `http://192.168.100.36/api/v4/cabinets/28300/documents/add/`,
-                  {
-                    method: "POST",
-                    headers: getAuthHeaders(),
-                    body: JSON.stringify({ document: id }),
-                  }
-                )
-                  .then(async (res) => {
-                    if (res.status == 200) {
-                      const formData = new FormData();
-                      formData.append("action_name", "replace");
-                      formData.append("file_new", selectedFile);
-                      console.log(formData);
-                      fetch(
-                        `http://192.168.100.36/api/v4/documents/${id}/files/`,
-                        {
-                          headers: fileHeaders(),
-                          body: formData,
-                          method: "POST",
-                        }
-                      )
-                        .then((res) => {
-                          if (res.status == 200) {
-                            console.log("upload Successful");
-                            setLoading(false);
-                          }
-                        })
-                        .catch((err) => {
-                          console.error(err.message);
-                          setLoading(false);
-                        });
-                    }
-                  })
-                  .catch((err) => console.log(err.message));
-              })
-              .catch((err) => console.log(err.message));
-          })
-          .catch((err) => console.error(err.message));
-
-        //fourth Api Call
-        // fifth api call
+    for (let i = 0; i < uploadedFiles.length; i++) {
+      setLoading(true);
+      fetch(`${base_url}/api/v4/documents/`, {
+        method: "POST",
+        headers: getAuthHeaders(),
+        body: JSON.stringify({
+          document_type_id: headerData.documentType,
+          label: uploadedFiles[i].name,
+        }),
       })
-      .catch((err) => console.error(err.message));
-    // second api call
+        .then(async (res) => {
+          const response = await res.json();
+          const id = response.id;
+          console.log(1);
+          fetch(`${base_url}/api/v4/documents/${id}/metadata/`, {
+            headers: getAuthHeaders(),
+            method: "POST",
+            body: JSON.stringify({
+              metadata_type_id: 5,
+              value: headerData.metaData,
+            }),
+          })
+            .then(async (res) => {
+              console.log(2);
+
+              fetch(`${base_url}/api/v4/documents/${id}/tags/attach/`, {
+                method: "POST",
+                headers: getAuthHeaders(),
+                body: JSON.stringify({ tag: headerData.tag }),
+              })
+                .then(async (res) => {
+                  if (res.status === 200) {
+                    console.log(3);
+                  }
+                  //28300
+                  fetch(
+                    `http://192.168.100.36/api/v4/cabinets/${headerData.cabinet}/documents/add/`,
+                    {
+                      method: "POST",
+                      headers: getAuthHeaders(),
+                      body: JSON.stringify({ document: id }),
+                    }
+                  )
+                    .then(async (res) => {
+                      if (res.status == 200) {
+                        console.log(4);
+                        const formData = new FormData();
+                        formData.append("action_name", "replace");
+                        formData.append("file_new", uploadedFiles[i]);
+
+                        fetch(
+                          `http://192.168.100.36/api/v4/documents/${id}/files/`,
+                          {
+                            headers: fileHeaders(),
+                            body: formData,
+                            method: "POST",
+                          }
+                        )
+                          .then((res) => {
+                            console.log("i was completed");
+                            if (res.status == 202) {
+                              console.log(5);
+                              setLoading(false);
+                              console.log("upload Successful");
+                              setToastData("Upload Successful");
+                              setShowToast(true);
+
+                              setUploadedFiles([]);
+                            }
+                          })
+                          .catch((err) => {
+                            console.error(err.message);
+                            setLoading(false);
+                          });
+                      }
+                    })
+                    .catch((err) => console.log(err.message));
+                })
+                .catch((err) => console.log(err.message));
+            })
+            .catch((err) => console.error(err.message));
+
+          //fourth Api Call
+          // fifth api call
+        })
+        .catch((err) => console.error(err.message));
+      // second api call
+    }
   };
 
   // third API call
@@ -274,7 +278,8 @@ const Home = () => {
       documentTypeData={documentTypeData}
       handleCustomSelect={handleCustomSelect}
       handleSubmit={handleSubmit}
-      handleFileChange={handleFileChange}
+      setShowToast={setShowToast}
+      // handleFileChange={handleFileChange}
     />
   );
 };
