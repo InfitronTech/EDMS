@@ -139,7 +139,7 @@ const Home = () => {
 
   //
   // handle Form change
-
+  console.log(headerData);
   const handleSubmit = async () => {
     // first api call is for
 
@@ -219,6 +219,7 @@ const Home = () => {
                           .catch((err) => {
                             console.error(err.message);
                             setLoading(false);
+                            setToastData(err.message);
                           });
                       }
                     })
