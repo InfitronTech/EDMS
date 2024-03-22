@@ -17,11 +17,10 @@ const DismissibleExample = ({
   const closeShow = () => {
     setShowToast(false);
   };
-
   return (
     <Row className="mt-3 ">
       <Col md={6} className="mb-2  align-right">
-        <Toast show={showToast} onClose={closeShow} autohide>
+        <Toast show={showToast} onClose={closeShow} delay={3000}>
           <Toast.Header>
             <img
               src="holder.js/20x20?text=%20"

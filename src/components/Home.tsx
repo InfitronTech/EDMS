@@ -2,12 +2,10 @@ import { error } from "console";
 import React from "react";
 import { HeaderData } from "../pages/Home";
 import cabinetData from "../cabinetData";
-
+import Toast from "./Toast";
 import Select from "react-select";
 import Loading from "./Loading";
-import { ProgressBar } from "react-bootstrap";
-import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
+
 interface AppProps {
   loading: boolean;
   error: string;
@@ -46,26 +44,17 @@ const Home = ({
 }: // handleFileChange,
 AppProps) => {
   return (
-    <div className="main_container">
+    <div>
       {loading && <Loading />}
+
       <div className="container-fluid">
-        {/* <Toast
-          setShowToast={setShowToast}
-          showToast={showToast}
-          toastData={toastData}
-        /> */}
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
+        {showToast && (
+          <Toast
+            setShowToast={setShowToast}
+            showToast={showToast}
+            toastData={toastData}
+          />
+        )}
 
         <div>
           <h3 className="text-body text-center mt-3 mb-3">
@@ -146,13 +135,6 @@ AppProps) => {
 
               <p>Drag 'n' drop some files here, or click to select files</p>
             </div>
-            <button
-              onClick={handleSubmit}
-              disabled={loading}
-              className="btn btn-primary"
-            >
-              Upload
-            </button>
             <p>File count {uploadedFiles.length}</p>
             {uploadedFiles && uploadedFiles.length > 0 && (
               <>
@@ -168,6 +150,14 @@ AppProps) => {
                 </ul>
               </>
             )}
+
+            <button
+              onClick={handleSubmit}
+              disabled={loading}
+              className="btn btn-primary"
+            >
+              Upload
+            </button>
           </main>
         </div>
 
