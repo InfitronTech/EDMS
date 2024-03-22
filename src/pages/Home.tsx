@@ -214,32 +214,12 @@ const Home = () => {
                               console.log(5);
                               setLoading(false);
 
-                              toast("Upload was Successful!", {
-                                position: "top-right",
-                                autoClose: 5000,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                                theme: "light",
-                              });
                               setUploadedFiles([]);
                             }
                           })
                           .catch((err) => {
                             console.error(err.message);
                             setLoading(false);
-                            toast("Server error", {
-                              position: "top-right",
-                              autoClose: 5000,
-                              hideProgressBar: false,
-                              closeOnClick: true,
-                              pauseOnHover: true,
-                              draggable: true,
-                              progress: undefined,
-                              theme: "light",
-                            });
                           });
                       }
                     })
