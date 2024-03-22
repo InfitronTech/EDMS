@@ -212,7 +212,8 @@ const Home = () => {
                             if (res.status == 202) {
                               console.log(5);
                               setLoading(false);
-
+                              setShowToast(true);
+                              setToastData("upload Successful");
                               setUploadedFiles([]);
                             }
                           })
