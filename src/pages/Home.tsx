@@ -82,7 +82,7 @@ const Home = () => {
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
   console.log(headerData.metaData);
   // api calls
-  const base_url = "http://192.168.100.36/";
+  const base_url = "http://192.168.100.36";
   const headers = getAuthHeaders();
 
   // get documentType tag and metaData
@@ -149,7 +149,7 @@ const Home = () => {
     // label: uploadedFiles[i].name
     for (let i = 0; i < uploadedFiles.length; i++) {
       setLoading(true);
-      fetch(`${base_url}/api/v4/documents/`, {
+      fetch(`http://192.168.100.36/api/v4/documents/`, {
         method: "POST",
         headers: getAuthHeaders(),
         body: JSON.stringify({
@@ -161,7 +161,7 @@ const Home = () => {
           const response = await res.json();
           const id = response.id;
           console.log(1);
-          fetch(`${base_url}/api/v4/documents/${id}/metadata/`, {
+          fetch(`http://192.168.100.36/api/v4/documents/${id}/metadata/`, {
             headers: getAuthHeaders(),
             method: "POST",
             body: JSON.stringify({
@@ -172,11 +172,14 @@ const Home = () => {
             .then(async (res) => {
               console.log(2);
 
-              fetch(`${base_url}/api/v4/documents/${id}/tags/attach/`, {
-                method: "POST",
-                headers: getAuthHeaders(),
-                body: JSON.stringify({ tag: headerData.tag }),
-              })
+              fetch(
+                `http://192.168.100.36/api/v4/documents/${id}/tags/attach/`,
+                {
+                  method: "POST",
+                  headers: getAuthHeaders(),
+                  body: JSON.stringify({ tag: headerData.tag }),
+                }
+              )
                 .then(async (res) => {
                   if (res.status === 200) {
                     console.log(3);
