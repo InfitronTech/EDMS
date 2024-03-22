@@ -31,7 +31,7 @@ interface TagData {
   label: string;
 }
 const Home = () => {
-  const [loading, setLoading] = React.useState<boolean>(true);
+  const [loading, setLoading] = React.useState<boolean>(false);
   const [toastData, setToastData] = React.useState("");
   const [headerData, setHeaderData] = React.useState<HeaderData>(
     {} as HeaderData
