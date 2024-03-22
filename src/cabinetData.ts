@@ -135,6 +135,36 @@ const data = [
 {id:28302, label:"Ajayi Kolawole E.-Civil Engineer I_Pc.1839 (Conf)"},	
 {id:28301, label:"Ajayi Kolawole E.-Civil Engineer I_P.1839  (Open)"},	
 
+// last two batches 
+{id:28291 , label:"Service Shops_ES-02-02-259-8"},
+{id:28291, label:"Service Shops_ES-02-02-259-8"},
+{id:27894, label:"Balogun Iyabo(Mrs) _Senior Head Cleaner I_Pj5201 (Conf)"}  ,  
+{id:27896, label:"Ibrahim Omolola_Senior Head Cleaner_Pcj 5696 Conf"},
+{id:27897, label:"Ibrahim Omolola_Senior Head Cleaner_Pcj 5696 Open"},  
+{id:27898, label:"Idris S. Adeola_Head Cleaner_Pj6157 (Conf)"},   
+{id:27899, label:"Idris S. Adeola_Head Cleaner_Pj6157(Open)"},
+
+{id:28235, label:"1 Dr O. A. Akapo_ES-Ogb_1"},
+{id:28236, label:"2 Dr O. A. Akapo_ES-Ogb_2"},
+{id:28281, label:"3 Mrs .J. Bosede OkunmuyideES.02.02.1602_SHOP 3"},
+{id:28238, label:"4 ES.02.02.259_SHOP 4"},
+{id:28234, label:"5 BamQuad Assocoates_ES-Ogb_5"},
+{id:28241, label:"5 Miss T. O Odusanya_Es-Ogb_5"},
+{id:28239, label:"10 ES.02.02.359_SHOP 10"},
+{id:28232, label:"Alhaja M. S. Adebiyi_ES-Ogb"},
+{id:28338, label:"Adebo Aderemi Michael(Arc)-General Manager (Projects)_P 1818 Open"},
+{id:28339, label:"Adebo Aderemi Michael(Arc)-General Manager (Projects)_Pc 1818conf"},
+{id:28340, label:"Balogun .A. Morufudeen_Assistant General Manager_P1365 Open"},
+{id:2834, label:"Balogun .A. Morufudeen_Assistant General Manager_Pc.1365 (Conf)"},
+{id:28342, label:"Lawal Muyideen Olawale(Mr)_Chief Clerical Officer_P 1737 (Conf)"},
+{id:28343, label:"Lawal Muyideen Olawale(Mr)_Chief Clerical Officer_P.1738 (Open)"},
+{id:28344, label:"Muraina Idowu Olabode(Mr)_Chief Clerical Officer_P. 1707(Open)"},
+{id:28345, label:"Muraina Idowu Olabode(Mr)_Chief Clerical Officer_Pc 1707 Conf"},
+{id:28346, label:"Saheed Oluseyi L._Principal Admin & Hr Officer_P. 1690 (Conf)"},
+{id:28347, label:"Saheed Oluseyi L._Principal Admin & Hr Officer_P. 1690 (Open)"},
+{id:28348, label:"Sonubi Adedoyin(Mrs)_Senior Secretarial Officer_P. 1387 (Open)"},
+{id:28349, label:"Sonubi Adedoyin(Mrs)_Senior Secretarial Officer_P.1387 (Conf)"},
+
 
 
 ]
