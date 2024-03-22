@@ -1,4 +1,3 @@
-import { error } from "console";
 import React from "react";
 import { HeaderData } from "../pages/Home";
 import cabinetData from "../cabinetData";
@@ -138,26 +137,27 @@ AppProps) => {
             <p>File count {uploadedFiles.length}</p>
             {uploadedFiles && uploadedFiles.length > 0 && (
               <>
+                <button
+                  onClick={handleSubmit}
+                  disabled={loading}
+                  className="btn btn-primary"
+                >
+                  Upload
+                </button>
                 <h4 className="mt-4">Uploaded Files</h4>
-                <ul className="list-group mb-3">
-                  {uploadedFiles.map((file: any, index: number) => (
-                    <li key={index} className="list-group-item">
-                      <span className="d-flex justify-space-between">
-                        {file.name} <i className="bi bi-x"></i>
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="upload">
+                  <ul className="list-group mb-3">
+                    {uploadedFiles.map((file: any, index: number) => (
+                      <li key={index} className="list-group-item">
+                        <span className="d-flex justify-space-between">
+                          {file.name} <i className="bi bi-x"></i>
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </>
             )}
-
-            <button
-              onClick={handleSubmit}
-              disabled={loading}
-              className="btn btn-primary"
-            >
-              Upload
-            </button>
           </main>
         </div>
 
