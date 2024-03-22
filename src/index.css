@@ -37,23 +37,5 @@ footer {
   align-items: center;
   background-color: rgba(0, 0, 0, .2);
   top:0;
-  height: 100%;
-  overflow: hidden;
-}
-.main_container {
-  display: flex;
-  width:100%;
-  position: relative;
-}
-
-.loading_container {
-
-  position:absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-
-;
 
 }
