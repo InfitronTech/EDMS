@@ -164,7 +164,7 @@ const data = [
 {id:28347, label:"Saheed Oluseyi L._Principal Admin & Hr Officer_P. 1690 (Open)"},
 {id:28348, label:"Sonubi Adedoyin(Mrs)_Senior Secretarial Officer_P. 1387 (Open)"},
 {id:28349, label:"Sonubi Adedoyin(Mrs)_Senior Secretarial Officer_P.1387 (Conf)"},
-
+{id:28379, label:"Hardware Team"}
 
 
 ]

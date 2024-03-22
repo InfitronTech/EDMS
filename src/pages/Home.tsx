@@ -82,7 +82,7 @@ const Home = () => {
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
   console.log(headerData.metaData);
   // api calls
-  const base_url = "http://192.168.100.36";
+  const base_url = "http://192.168.100.36/api/v4/";
   const headers = getAuthHeaders();
 
   // get documentType tag and metaData
